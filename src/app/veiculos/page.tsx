@@ -49,10 +49,10 @@ export default function VeiculosPage() {
     <AppShell>
       <div className="max-w-6xl mx-auto space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-ph-text-primary">
             Frota de Veículos (Carros e Caminhões)
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-ph-text-secondary mt-1">
             Gerencie os carros e caminhões que são sincronizados para o cache
             offline dos motoristas.
           </p>
@@ -61,14 +61,14 @@ export default function VeiculosPage() {
         {/* Formulário de Novo Veículo */}
         <form
           onSubmit={handleCriar}
-          className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4"
+          className="bg-ph-surface p-5 rounded-xl border border-ph-border shadow-sm space-y-4 transition-colors"
         >
-          <h2 className="text-sm font-bold text-slate-800 flex items-center gap-2">
-            <Plus className="w-4 h-4 text-blue-600" /> Cadastrar Novo Veículo
+          <h2 className="text-sm font-bold text-ph-text-primary flex items-center gap-2">
+            <Plus className="w-4 h-4 text-ph-primary" /> Cadastrar Novo Veículo
           </h2>
 
           {erro && (
-            <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs">
+            <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-xs">
               {erro}
             </div>
           )}
@@ -81,7 +81,7 @@ export default function VeiculosPage() {
               value={placa}
               onChange={(e) => setPlaca(e.target.value.toUpperCase())}
               placeholder="Placa (ex: ABC1D23)"
-              className="px-3 py-2 text-sm rounded-lg border border-slate-300 uppercase font-mono"
+              className="px-3 py-2 text-sm rounded-lg border border-ph-border bg-ph-surface text-ph-text-primary uppercase font-mono focus:outline-none focus:ring-1 focus:ring-ph-primary"
             />
             <input
               type="text"
@@ -89,12 +89,12 @@ export default function VeiculosPage() {
               value={modelo}
               onChange={(e) => setModelo(e.target.value)}
               placeholder="Modelo (ex: Scania R500)"
-              className="px-3 py-2 text-sm rounded-lg border border-slate-300 lg:col-span-2"
+              className="px-3 py-2 text-sm rounded-lg border border-ph-border bg-ph-surface text-ph-text-primary lg:col-span-2 focus:outline-none focus:ring-1 focus:ring-ph-primary"
             />
             <select
               value={tipo}
               onChange={(e) => setTipo(e.target.value as TipoVeiculo)}
-              className="px-3 py-2 text-sm rounded-lg border border-slate-300 bg-white"
+              className="px-3 py-2 text-sm rounded-lg border border-ph-border bg-ph-surface text-ph-text-primary font-medium focus:outline-none focus:ring-1 focus:ring-ph-primary"
             >
               <option value="CARRO">Carro Leve / Passeio</option>
               <option value="UTILITARIO">Utilitário / VUC</option>
@@ -110,7 +110,7 @@ export default function VeiculosPage() {
               value={kmAtual}
               onChange={(e) => setKmAtual(Number(e.target.value))}
               placeholder="Hodômetro (KM)"
-              className="px-3 py-2 text-sm rounded-lg border border-slate-300"
+              className="px-3 py-2 text-sm rounded-lg border border-ph-border bg-ph-surface text-ph-text-primary focus:outline-none focus:ring-1 focus:ring-ph-primary"
             />
           </div>
 
@@ -118,7 +118,7 @@ export default function VeiculosPage() {
             <button
               type="submit"
               disabled={saving}
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+              className="px-4 py-2 rounded-lg text-xs font-semibold bg-ph-primary hover:bg-ph-primary-pressed text-white shadow-sm transition-colors"
             >
               {saving ? "Cadastrando..." : "Adicionar à Frota"}
             </button>
@@ -126,10 +126,10 @@ export default function VeiculosPage() {
         </form>
 
         {/* Tabela de Veículos */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="bg-ph-surface rounded-xl border border-ph-border shadow-sm overflow-hidden transition-colors">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase">
+              <tr className="bg-ph-sidebar-bg border-b border-ph-border text-[11px] font-bold text-ph-text-secondary uppercase tracking-wider">
                 <th className="py-3 px-4">Placa</th>
                 <th className="py-3 px-4">Modelo</th>
                 <th className="py-3 px-4">Tipo</th>
@@ -138,31 +138,31 @@ export default function VeiculosPage() {
                 <th className="py-3 px-4 text-right">Ação</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200 text-sm">
+            <tbody className="divide-y divide-ph-border text-sm">
               {veiculos.map((v) => (
-                <tr key={v.id} className="hover:bg-slate-50">
-                  <td className="py-3.5 px-4 font-bold font-mono text-slate-900">
+                <tr key={v.id} className="hover:bg-ph-grid-hover transition-colors">
+                  <td className="py-3.5 px-4 font-bold font-mono text-ph-text-primary">
                     <span className="inline-flex items-center gap-2">
-                      <Truck className="w-4 h-4 text-blue-600" />
+                      <Truck className="w-4 h-4 text-ph-primary" />
                       {v.placa}
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-slate-800 font-medium">
+                  <td className="py-3.5 px-4 text-ph-text-primary font-medium">
                     {v.modelo}
                   </td>
-                  <td className="py-3.5 px-4 text-xs font-semibold text-slate-600">
+                  <td className="py-3.5 px-4 text-xs font-semibold text-ph-text-secondary">
                     {LABELS_TIPO_VEICULO[v.tipo] || v.tipo}
                   </td>
-                  <td className="py-3.5 px-4 font-mono text-xs text-slate-600">
+                  <td className="py-3.5 px-4 font-mono text-xs text-ph-text-secondary">
                     {v.kmAtual.toLocaleString("pt-BR")} km
                   </td>
                   <td className="py-3.5 px-4">
                     {v.ativo ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                         <CheckCircle2 className="w-3.5 h-3.5" /> Ativo
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-500">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-ph-sidebar-bg border border-ph-border text-ph-sidebar-muted">
                         <XCircle className="w-3.5 h-3.5" /> Inativo
                       </span>
                     )}
@@ -170,10 +170,10 @@ export default function VeiculosPage() {
                   <td className="py-3.5 px-4 text-right">
                     <button
                       onClick={() => handleToggleAtivo(v)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                         v.ativo
-                          ? "bg-rose-50 text-rose-700 hover:bg-rose-100"
-                          : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                          ? "bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 border border-rose-200 dark:border-rose-900"
+                          : "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-900"
                       }`}
                     >
                       {v.ativo ? "Inativar" : "Reativar"}

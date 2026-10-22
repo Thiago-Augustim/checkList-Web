@@ -110,17 +110,17 @@ export default function ChecklistsListPage() {
       <div className="max-w-7xl mx-auto space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">
-              Vistorias Recebidas & Auditoria de Avarias
+            <h1 className="text-2xl font-bold text-ph-text-primary">
+              Vistorias Recebidas &amp; Auditoria de Avarias
             </h1>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-ph-text-secondary mt-1">
               Consulte todos os checklists sincronizados pelos motoristas e
               verifique o status das fotos de avarias.
             </p>
           </div>
           <button
             onClick={carregar}
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-50 text-slate-700"
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-ph-surface border border-ph-border hover:bg-ph-grid-hover text-ph-text-secondary hover:text-ph-text-primary shadow-sm transition-colors"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
             Atualizar Lista
@@ -128,16 +128,16 @@ export default function ChecklistsListPage() {
         </div>
 
         {/* Barra de Filtros */}
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 uppercase">
-            <Filter className="w-4 h-4" />
+        <div className="bg-ph-surface p-4 rounded-xl border border-ph-border shadow-sm flex flex-wrap items-center gap-4 transition-colors">
+          <div className="flex items-center gap-2 text-xs font-semibold text-ph-text-secondary uppercase">
+            <Filter className="w-4 h-4 text-ph-primary" />
             Filtros:
           </div>
 
           <select
             value={filtroAvaria}
             onChange={(e) => setFiltroAvaria(e.target.value)}
-            className="px-3 py-2 rounded-lg border border-slate-300 text-xs font-medium bg-white"
+            className="px-3 py-2 rounded-lg border border-ph-border text-xs font-medium bg-ph-surface text-ph-text-primary focus:outline-none focus:ring-1 focus:ring-ph-primary"
           >
             <option value="TODOS">Todas as condições</option>
             <option value="COM_AVARIA">Apenas com avaria detectada</option>
@@ -147,7 +147,7 @@ export default function ChecklistsListPage() {
           <select
             value={filtroStatus}
             onChange={(e) => setFiltroStatus(e.target.value)}
-            className="px-3 py-2 rounded-lg border border-slate-300 text-xs font-medium bg-white"
+            className="px-3 py-2 rounded-lg border border-ph-border text-xs font-medium bg-ph-surface text-ph-text-primary focus:outline-none focus:ring-1 focus:ring-ph-primary"
           >
             <option value="TODOS">Todos os status de sincronização</option>
             <option value="CONCLUIDO">Sincronização Concluída</option>
@@ -159,7 +159,7 @@ export default function ChecklistsListPage() {
           <select
             value={filtroVeiculo}
             onChange={(e) => setFiltroVeiculo(e.target.value)}
-            className="px-3 py-2 rounded-lg border border-slate-300 text-xs font-medium bg-white"
+            className="px-3 py-2 rounded-lg border border-ph-border text-xs font-medium bg-ph-surface text-ph-text-primary focus:outline-none focus:ring-1 focus:ring-ph-primary"
           >
             <option value="TODOS">Todos os veículos</option>
             {veiculos.map((v) => (
@@ -171,16 +171,16 @@ export default function ChecklistsListPage() {
         </div>
 
         {/* Tabela */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="bg-ph-surface rounded-xl border border-ph-border shadow-sm overflow-hidden transition-colors">
           {checklists.length === 0 ? (
-            <div className="p-10 text-center text-sm text-slate-500">
+            <div className="p-10 text-center text-sm text-ph-text-secondary">
               Nenhuma vistoria encontrada para os filtros selecionados.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <tr className="bg-ph-sidebar-bg border-b border-ph-border text-[11px] font-bold text-ph-text-secondary uppercase tracking-wider">
                     <th className="py-3 px-4">Veículo</th>
                     <th className="py-3 px-4">Modelo de Checklist</th>
                     <th className="py-3 px-4">Motorista</th>
@@ -192,40 +192,40 @@ export default function ChecklistsListPage() {
                     <th className="py-3 px-4 text-right">Detalhes</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200 text-sm">
+                <tbody className="divide-y divide-ph-border text-sm">
                   {checklistsDaPagina.map((c) => (
-                    <tr key={c.id} className="hover:bg-slate-50">
+                    <tr key={c.id} className="hover:bg-ph-grid-hover transition-colors">
                       <td className="py-3.5 px-4">
-                        <div className="font-bold text-slate-900">
+                        <div className="font-bold text-ph-text-primary">
                           {c.veiculoPlaca}
                         </div>
-                        <div className="text-xs text-slate-500">
+                        <div className="text-xs text-ph-text-secondary">
                           {c.veiculoModelo}
                         </div>
                       </td>
-                      <td className="py-3.5 px-4 font-medium text-slate-800">
+                      <td className="py-3.5 px-4 font-medium text-ph-text-primary">
                         {c.templateTitulo}
                       </td>
-                      <td className="py-3.5 px-4 text-slate-600">
+                      <td className="py-3.5 px-4 text-ph-text-secondary">
                         {c.motoristaNome}
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-xs text-slate-600">
+                      <td className="py-3.5 px-4 font-mono text-xs text-ph-text-secondary">
                         {c.kmVistoria.toLocaleString("pt-BR")} km
                       </td>
-                      <td className="py-3.5 px-4 text-xs text-slate-600">
+                      <td className="py-3.5 px-4 text-xs text-ph-text-secondary">
                         {new Date(c.realizadoEm).toLocaleString("pt-BR")}
                       </td>
-                      <td className="py-3.5 px-4 text-xs text-slate-500">
+                      <td className="py-3.5 px-4 text-xs text-ph-sidebar-muted">
                         {new Date(c.sincronizadoEm).toLocaleString("pt-BR")}
                       </td>
                       <td className="py-3.5 px-4">
                         {c.statusSincronizacao === "CONCLUIDO" ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                             <CheckCircle2 className="w-3.5 h-3.5" />
                             Concluído
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
                             <Clock className="w-3.5 h-3.5" />
                             Aguardando Fotos
                           </span>
@@ -233,12 +233,12 @@ export default function ChecklistsListPage() {
                       </td>
                       <td className="py-3.5 px-4">
                         {c.possuiAvaria ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
                             <AlertTriangle className="w-3.5 h-3.5" />
                             Com Avaria
                           </span>
                         ) : (
-                          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+                          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-ph-sidebar-bg text-ph-text-secondary border border-ph-border">
                             OK
                           </span>
                         )}
@@ -246,9 +246,9 @@ export default function ChecklistsListPage() {
                       <td className="py-3.5 px-4 text-right">
                         <Link
                           href={`/checklists/${c.id}`}
-                          className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-blue-600 text-white transition-colors"
+                          className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-ph-primary hover:bg-ph-primary-pressed text-white shadow-sm transition-colors"
                         >
-                          Ver Respostas & Fotos
+                          Ver Respostas &amp; Fotos
                         </Link>
                       </td>
                     </tr>
@@ -260,15 +260,15 @@ export default function ChecklistsListPage() {
 
           {/* Controlador de Páginas */}
           {checklists.length > 0 && (
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-slate-200 bg-slate-50">
-              <span className="text-xs text-slate-500">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-ph-border bg-ph-sidebar-bg">
+              <span className="text-xs text-ph-text-secondary">
                 Mostrando{" "}
-                <strong className="text-slate-700">
+                <strong className="text-ph-text-primary">
                   {(paginaAtual - 1) * ITENS_POR_PAGINA + 1}–
                   {Math.min(paginaAtual * ITENS_POR_PAGINA, checklists.length)}
                 </strong>{" "}
                 de{" "}
-                <strong className="text-slate-700">{checklists.length}</strong>{" "}
+                <strong className="text-ph-text-primary">{checklists.length}</strong>{" "}
                 vistorias
               </span>
 
@@ -280,7 +280,7 @@ export default function ChecklistsListPage() {
                   id="pagina-primeira"
                   onClick={() => irParaPagina(1)}
                   disabled={paginaAtual === 1}
-                  className="p-1.5 rounded-lg text-slate-600 hover:bg-white hover:shadow-sm disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:shadow-none"
+                  className="p-1.5 rounded-lg text-ph-text-secondary hover:bg-ph-surface hover:text-ph-text-primary disabled:opacity-30 disabled:hover:bg-transparent shadow-sm transition-colors"
                   title="Primeira página"
                 >
                   <ChevronsLeft className="w-4 h-4" />
@@ -289,7 +289,7 @@ export default function ChecklistsListPage() {
                   id="pagina-anterior"
                   onClick={() => irParaPagina(paginaAtual - 1)}
                   disabled={paginaAtual === 1}
-                  className="p-1.5 rounded-lg text-slate-600 hover:bg-white hover:shadow-sm disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:shadow-none"
+                  className="p-1.5 rounded-lg text-ph-text-secondary hover:bg-ph-surface hover:text-ph-text-primary disabled:opacity-30 disabled:hover:bg-transparent shadow-sm transition-colors"
                   title="Página anterior"
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -299,7 +299,7 @@ export default function ChecklistsListPage() {
                   p === "..." ? (
                     <span
                       key={`ellipsis-${idx}`}
-                      className="px-2 text-xs text-slate-400"
+                      className="px-2 text-xs text-ph-sidebar-muted"
                     >
                       …
                     </span>
@@ -311,8 +311,8 @@ export default function ChecklistsListPage() {
                       aria-current={p === paginaAtual ? "page" : undefined}
                       className={`min-w-[32px] h-8 px-2 rounded-lg text-xs font-semibold transition-colors ${
                         p === paginaAtual
-                          ? "bg-blue-600 text-white shadow-sm"
-                          : "text-slate-600 hover:bg-white hover:shadow-sm"
+                          ? "bg-ph-primary text-white shadow-sm"
+                          : "text-ph-text-secondary hover:bg-ph-surface hover:text-ph-text-primary shadow-sm"
                       }`}
                     >
                       {p}
@@ -324,7 +324,7 @@ export default function ChecklistsListPage() {
                   id="pagina-proxima"
                   onClick={() => irParaPagina(paginaAtual + 1)}
                   disabled={paginaAtual === totalPaginas}
-                  className="p-1.5 rounded-lg text-slate-600 hover:bg-white hover:shadow-sm disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:shadow-none"
+                  className="p-1.5 rounded-lg text-ph-text-secondary hover:bg-ph-surface hover:text-ph-text-primary disabled:opacity-30 disabled:hover:bg-transparent shadow-sm transition-colors"
                   title="Próxima página"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -333,7 +333,7 @@ export default function ChecklistsListPage() {
                   id="pagina-ultima"
                   onClick={() => irParaPagina(totalPaginas)}
                   disabled={paginaAtual === totalPaginas}
-                  className="p-1.5 rounded-lg text-slate-600 hover:bg-white hover:shadow-sm disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:shadow-none"
+                  className="p-1.5 rounded-lg text-ph-text-secondary hover:bg-ph-surface hover:text-ph-text-primary disabled:opacity-30 disabled:hover:bg-transparent shadow-sm transition-colors"
                   title="Última página"
                 >
                   <ChevronsRight className="w-4 h-4" />

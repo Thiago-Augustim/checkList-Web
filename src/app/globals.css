@@ -2,6 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Tema Claro */
+  --ph-primary: #4caf50;                /* Mantém o verde */
+  --ph-primary-bg: #e8f5e9;             /* Verde bem clarinho para fundos */
+  --ph-grid-hover-bg: #f1f8e9;          /* Destaque claro ao passar o mouse */
+  --ph-border: #e2e8f0;                 /* Bordas cinza-claras discretas */
+  --ph-surface: #ffffff;                /* Fundos brancos e limpos */
+  --ph-sidebar-bg: #f8fafc;             /* Barra lateral levemente cinza */
+  --ph-sidebar-text-muted: #64748b;     /* Texto secundário */
+  --ph-primary-pressed: #388e3c;        /* Botão pressionado */
+  --ph-text-primary: #0f172a;           /* Texto principal escuro (quase preto) */
+  --ph-text-secondary: #475569;         /* Texto secundário cinza escuro */
+  --ph-card-bg: rgba(255, 255, 255, 0.7);
+  --ph-card-blur: 4px;
+  --ph-body-bg: #f8fafc;
+}
+
+.dark,
+[data-theme="dark"] {
+  /* Tema Escuro */
+  --ph-primary: #4caf50;
+  --ph-primary-bg: #0d2010;
+  --ph-grid-hover-bg: #0d2215;
+  --ph-border: #1f2937;
+  --ph-surface: #161b27;
+  --ph-sidebar-bg: #131a24;
+  --ph-sidebar-text-muted: #64748b;
+  --ph-primary-pressed: #388e3c;
+  --ph-text-primary: #e2e8f0;
+  --ph-text-secondary: #94a3b8;
+  --ph-card-bg: rgba(22, 27, 39, 0.2);
+  --ph-card-blur: 4px;
+  --ph-body-bg: #0b0f17;
+}
+
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  background-color: var(--ph-body-bg);
+  color: var(--ph-text-primary);
+  font-family: inherit;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Suporte a seleção de texto harmoniosa */
+::selection {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+/* Suporte de scrollbar bonita */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.45);
 }
