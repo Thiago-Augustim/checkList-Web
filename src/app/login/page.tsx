@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Truck, Lock, User, AlertCircle, Sun, Moon } from "lucide-react";
+import { Truck, Lock, User, AlertCircle, Sun, Moon, X } from "lucide-react";
 import { api, saveAuthSession } from "@/lib/api";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -13,6 +13,12 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { isDark, toggleTheme } = useTheme();
+
+  const limparCamposECancelarErro = () => {
+    setError(null);
+    setUsername("");
+    setSenha("");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,9 +73,19 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="p-8 space-y-5">
           {error && (
-            <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-xs flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>{error}</span>
+            <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-xs flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{error}</span>
+              </div>
+              <button
+                type="button"
+                onClick={limparCamposECancelarErro}
+                className="p-1 rounded-md hover:bg-rose-100 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 transition-colors shrink-0"
+                title="Fechar aviso e limpar campos"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
           )}
 

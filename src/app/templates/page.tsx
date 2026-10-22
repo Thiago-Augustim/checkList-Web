@@ -222,6 +222,28 @@ export default function TemplatesPage() {
     }
   };
 
+  const limparCamposECancelarErro = () => {
+    setErro(null);
+    if (!editingId) {
+      setTitulo("");
+      setDescricao("");
+      setTipoVeiculo("CAVALO");
+      setPerguntas([{ ...novaPergunta(1), exigeFotoSeAvaria: true }]);
+    } else {
+      try {
+        const inicial = JSON.parse(snapshotInicial);
+        setTitulo(inicial.titulo || "");
+        setDescricao(inicial.descricao || "");
+        setTipoVeiculo(inicial.tipoVeiculo || "CAVALO");
+        setPerguntas(inicial.perguntas || []);
+      } catch {
+        setTitulo("");
+        setDescricao("");
+        setPerguntas([]);
+      }
+    }
+  };
+
   const handleToggleAtivo = async () => {
     if (!editingId || statusAtivo === null) return;
     setAlterandoStatus(true);
@@ -428,8 +450,16 @@ export default function TemplatesPage() {
               className="flex-1 overflow-y-auto p-5 space-y-5"
             >
               {erro && (
-                <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-xs">
-                  {erro}
+                <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-xs flex items-center justify-between gap-2">
+                  <span>{erro}</span>
+                  <button
+                    type="button"
+                    onClick={limparCamposECancelarErro}
+                    className="p-1 rounded-md hover:bg-rose-100 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 transition-colors shrink-0"
+                    title="Fechar aviso e limpar campos"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
                 </div>
               )}
 

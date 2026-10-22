@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import AppShell from "@/components/AppShell";
 import { api, PerfilUsuario, UsuarioDto } from "@/lib/api";
-import { CheckCircle2, Plus, UserCheck, XCircle } from "lucide-react";
+import { CheckCircle2, Plus, UserCheck, X, XCircle } from "lucide-react";
 
 export default function UsuariosPage() {
   const [usuarios, setUsuarios] = useState<UsuarioDto[]>([]);
@@ -14,6 +14,15 @@ export default function UsuariosPage() {
   const [perfil, setPerfil] = useState<PerfilUsuario>("MOTORISTA");
   const [saving, setSaving] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
+
+  const limparCamposECancelarErro = () => {
+    setErro(null);
+    setNome("");
+    setUsername("");
+    setEmail("");
+    setSenha("");
+    setPerfil("MOTORISTA");
+  };
 
   const carregar = useCallback(async () => {
     const data = await api.listarUsuarios();
@@ -70,8 +79,16 @@ export default function UsuariosPage() {
           </h2>
 
           {erro && (
-            <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-xs">
-              {erro}
+            <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-xs flex items-center justify-between gap-2">
+              <span>{erro}</span>
+              <button
+                type="button"
+                onClick={limparCamposECancelarErro}
+                className="p-1 rounded-md hover:bg-rose-100 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 transition-colors shrink-0"
+                title="Fechar aviso e limpar campos"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
           )}
 

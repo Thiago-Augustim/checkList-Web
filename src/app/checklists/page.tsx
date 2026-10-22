@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import {
   api,
@@ -42,6 +42,7 @@ function gerarPaginasVisiveis(
 }
 
 export default function ChecklistsListPage() {
+  const router = useRouter();
   const [checklists, setChecklists] = useState<ChecklistResumoDto[]>([]);
   const [veiculos, setVeiculos] = useState<VeiculoDto[]>([]);
   const [filtroAvaria, setFiltroAvaria] = useState<string>("TODOS");
@@ -181,75 +182,68 @@ export default function ChecklistsListPage() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-ph-sidebar-bg border-b border-ph-border text-[11px] font-bold text-ph-text-secondary uppercase tracking-wider">
-                    <th className="py-3 px-4">Veículo</th>
-                    <th className="py-3 px-4">Modelo de Checklist</th>
-                    <th className="py-3 px-4">Motorista</th>
-                    <th className="py-3 px-4">Hodômetro</th>
-                    <th className="py-3 px-4">Preenchido (Offline)</th>
-                    <th className="py-3 px-4">Sincronizado (Servidor)</th>
-                    <th className="py-3 px-4">Status Sync</th>
-                    <th className="py-3 px-4">Avarias</th>
-                    <th className="py-3 px-4 text-right">Detalhes</th>
+                    <th className="py-2 px-3">Placa</th>
+                    <th className="py-2 px-3">Modelo de Checklist</th>
+                    <th className="py-2 px-3">Motorista</th>
+                    <th className="py-2 px-3">Hodômetro</th>
+                    <th className="py-2 px-3">Preenchido (Offline)</th>
+                    <th className="py-2 px-3">Sincronizado (Servidor)</th>
+                    <th className="py-2 px-3">Status Sync</th>
+                    <th className="py-2 px-3">Avarias</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-ph-border text-sm">
                   {checklistsDaPagina.map((c) => (
-                    <tr key={c.id} className="hover:bg-ph-grid-hover transition-colors">
-                      <td className="py-3.5 px-4">
-                        <div className="font-bold text-ph-text-primary">
+                    <tr
+                      key={c.id}
+                      onClick={() => router.push(`/checklists/${c.id}`)}
+                      className="hover:bg-ph-grid-hover transition-colors cursor-pointer"
+                      title="Clique para detalhar esta vistoria"
+                    >
+                      <td className="py-2 px-3">
+                        <span className="font-bold font-mono text-ph-text-primary">
                           {c.veiculoPlaca}
-                        </div>
-                        <div className="text-xs text-ph-text-secondary">
-                          {c.veiculoModelo}
-                        </div>
+                        </span>
                       </td>
-                      <td className="py-3.5 px-4 font-medium text-ph-text-primary">
+                      <td className="py-2 px-3 font-medium text-ph-text-primary">
                         {c.templateTitulo}
                       </td>
-                      <td className="py-3.5 px-4 text-ph-text-secondary">
+                      <td className="py-2 px-3 text-ph-text-secondary">
                         {c.motoristaNome}
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-xs text-ph-text-secondary">
+                      <td className="py-2 px-3 font-mono text-xs text-ph-text-secondary">
                         {c.kmVistoria.toLocaleString("pt-BR")} km
                       </td>
-                      <td className="py-3.5 px-4 text-xs text-ph-text-secondary">
+                      <td className="py-2 px-3 text-xs text-ph-text-secondary">
                         {new Date(c.realizadoEm).toLocaleString("pt-BR")}
                       </td>
-                      <td className="py-3.5 px-4 text-xs text-ph-sidebar-muted">
+                      <td className="py-2 px-3 text-xs text-ph-sidebar-muted">
                         {new Date(c.sincronizadoEm).toLocaleString("pt-BR")}
                       </td>
-                      <td className="py-3.5 px-4">
+                      <td className="py-2 px-3">
                         {c.statusSincronizacao === "CONCLUIDO" ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                            <CheckCircle2 className="w-3.5 h-3.5" />
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                            <CheckCircle2 className="w-3 h-3" />
                             Concluído
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
-                            <Clock className="w-3.5 h-3.5" />
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                            <Clock className="w-3 h-3" />
                             Aguardando Fotos
                           </span>
                         )}
                       </td>
-                      <td className="py-3.5 px-4">
+                      <td className="py-2 px-3">
                         {c.possuiAvaria ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
-                            <AlertTriangle className="w-3.5 h-3.5" />
-                            Com Avaria
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+                            <AlertTriangle className="w-3 h-3" />
+                            Avaria
                           </span>
                         ) : (
-                          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-ph-sidebar-bg text-ph-text-secondary border border-ph-border">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-ph-sidebar-bg text-ph-text-secondary border border-ph-border">
                             OK
                           </span>
                         )}
-                      </td>
-                      <td className="py-3.5 px-4 text-right">
-                        <Link
-                          href={`/checklists/${c.id}`}
-                          className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-ph-primary hover:bg-ph-primary-pressed text-white shadow-sm transition-colors"
-                        >
-                          Ver Respostas &amp; Fotos
-                        </Link>
                       </td>
                     </tr>
                   ))}
