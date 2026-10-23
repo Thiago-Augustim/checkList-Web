@@ -105,7 +105,7 @@ export default function TemplatesPage() {
       {
         titulo: "",
         descricao: "",
-        tipoVeiculo: "CAVALO",
+        tipoVeiculo: "CAVALO_MECANICO",
         perguntas: [{ ...novaPergunta(1), exigeFotoSeAvaria: true }],
       },
       null,
@@ -118,7 +118,7 @@ export default function TemplatesPage() {
       {
         titulo: t.titulo,
         descricao: t.descricao || "",
-        tipoVeiculo: t.tipoVeiculo || "CAVALO",
+        tipoVeiculo: t.tipoVeiculo || "CAVALO_MECANICO",
         perguntas: t.perguntas.map((p, idx) => ({ ...p, ordem: idx + 1 })),
       },
       t.id,
@@ -227,14 +227,14 @@ export default function TemplatesPage() {
     if (!editingId) {
       setTitulo("");
       setDescricao("");
-      setTipoVeiculo("CAVALO");
+      setTipoVeiculo("CAVALO_MECANICO");
       setPerguntas([{ ...novaPergunta(1), exigeFotoSeAvaria: true }]);
     } else {
       try {
         const inicial = JSON.parse(snapshotInicial);
         setTitulo(inicial.titulo || "");
         setDescricao(inicial.descricao || "");
-        setTipoVeiculo(inicial.tipoVeiculo || "CAVALO");
+        setTipoVeiculo(inicial.tipoVeiculo || "CAVALO_MECANICO");
         setPerguntas(inicial.perguntas || []);
       } catch {
         setTitulo("");

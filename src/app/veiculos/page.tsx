@@ -112,12 +112,12 @@ export default function VeiculosPage() {
               onChange={(e) => setTipo(e.target.value as TipoVeiculo)}
               className="px-3 py-2 text-sm rounded-lg border border-ph-border bg-ph-surface text-ph-text-primary font-medium focus:outline-none focus:ring-1 focus:ring-ph-primary"
             >
-              <option value="CARRO">Carro Leve / Passeio</option>
-              <option value="UTILITARIO">Utilitário / VUC</option>
-              <option value="TOCO">Caminhão Toco (4x2)</option>
-              <option value="TRUCK">Caminhão Truck (6x2)</option>
-              <option value="CAVALO">Cavalo Mecânico</option>
-              <option value="CARRETA">Carreta / Implemento</option>
+              <option value="CARRO">CARRO</option>
+              <option value="CAMINHONETE">CAMINHONETE</option>
+              <option value="TOCO">TOCO</option>
+              <option value="TRUCK">TRUCK</option>
+              <option value="CAVALO_MECANICO">CAVALO-MECANICO</option>
+              <option value="REBOQUE">REBOQUE</option>
             </select>
             <input
               type="number"
