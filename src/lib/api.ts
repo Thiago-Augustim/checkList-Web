@@ -1,24 +1,24 @@
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api/v1";
-
+  process.env.NEXT_PUBLIC_API_URL || "https://checklist-backend-w9vf.onrender.com/api/v1";
+//http://localhost:8080/api/v1
 export const BACKEND_ORIGIN = API_BASE_URL.replace(/\/api\/v1\/?$/, "");
 
 export type PerfilUsuario = "GESTOR" | "MOTORISTA";
 export type TipoVeiculo =
   | "CARRO"
-  | "UTILITARIO"
+  | "CAMINHONETE"
   | "TOCO"
   | "TRUCK"
-  | "CAVALO"
-  | "CARRETA";
+  | "CAVALO_MECANICO"
+  | "REBOQUE";
 
 export const LABELS_TIPO_VEICULO: Record<TipoVeiculo, string> = {
-  CARRO: "Carro Leve / Passeio",
-  UTILITARIO: "Utilitário / VUC",
-  TOCO: "Caminhão Toco (4x2)",
-  TRUCK: "Caminhão Truck (6x2)",
-  CAVALO: "Cavalo Mecânico",
-  CARRETA: "Carreta / Implemento",
+  CARRO: "CARRO",
+  CAMINHONETE: "CAMINHONETE",
+  TOCO: "TOCO",
+  TRUCK: "TRUCK",
+  CAVALO_MECANICO: "CAVALO-MECANICO",
+  REBOQUE: "REBOQUE",
 };
 
 export type TipoResposta = "TEXTO" | "BOOLEANO" | "ESCALA_1_5";

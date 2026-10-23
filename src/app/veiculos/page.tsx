@@ -9,7 +9,7 @@ export default function VeiculosPage() {
   const [veiculos, setVeiculos] = useState<VeiculoDto[]>([]);
   const [placa, setPlaca] = useState("");
   const [modelo, setModelo] = useState("");
-  const [tipo, setTipo] = useState<TipoVeiculo>("CAVALO");
+  const [tipo, setTipo] = useState<TipoVeiculo>("CAVALO_MECANICO");
   const [kmAtual, setKmAtual] = useState<number>(0);
   const [saving, setSaving] = useState(false);
   const [erro, setErro] = useState<string | null>(null);

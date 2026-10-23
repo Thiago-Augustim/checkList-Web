@@ -47,7 +47,7 @@ export default function TemplatesPage() {
 
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [tipoVeiculo, setTipoVeiculo] = useState<TipoVeiculo>("CAVALO");
+  const [tipoVeiculo, setTipoVeiculo] = useState<TipoVeiculo>("CAVALO_MECANICO");
   const [perguntas, setPerguntas] = useState<PerguntaDto[]>([]);
   const [saving, setSaving] = useState(false);
   const [erro, setErro] = useState<string | null>(null);

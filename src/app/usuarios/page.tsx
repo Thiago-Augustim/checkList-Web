@@ -174,11 +174,10 @@ export default function UsuariosPage() {
                   <td className="py-3.5 px-4 text-ph-text-secondary">{u.email}</td>
                   <td className="py-3.5 px-4">
                     <span
-                      className={`px-2.5 py-0.5 rounded text-xs font-bold ${
-                        u.perfil === "GESTOR"
+                      className={`px-2.5 py-0.5 rounded text-xs font-bold ${u.perfil === "GESTOR"
                           ? "bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800"
                           : "bg-ph-primary-bg text-ph-primary border border-ph-primary/20"
-                      }`}
+                        }`}
                     >
                       {u.perfil}
                     </span>
@@ -197,11 +196,10 @@ export default function UsuariosPage() {
                   <td className="py-3.5 px-4 text-right">
                     <button
                       onClick={() => handleToggleAtivo(u)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                        u.ativo
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${u.ativo
                           ? "bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 border border-rose-200 dark:border-rose-900"
                           : "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-900"
-                      }`}
+                        }`}
                     >
                       {u.ativo ? "Inativar" : "Reativar"}
                     </button>

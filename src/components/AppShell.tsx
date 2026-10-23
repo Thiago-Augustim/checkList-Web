@@ -100,17 +100,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     <div className="h-screen w-screen overflow-hidden flex bg-ph-body-bg text-ph-text-primary transition-colors">
       {/* Sidebar Fixa e Retrátil (Imune ao scroll do conteúdo) */}
       <aside
-        className={`h-full bg-ph-sidebar-bg border-r border-ph-border flex flex-col shrink-0 select-none transition-all duration-300 ease-in-out relative z-30 ${
-          collapsed ? "w-20" : "w-64"
-        }`}
+        className={`h-full bg-ph-sidebar-bg border-r border-ph-border flex flex-col shrink-0 select-none transition-all duration-300 ease-in-out relative z-30 ${collapsed ? "w-20" : "w-64"
+          }`}
       >
         {/* Cabeçalho da Sidebar */}
         <div
-          className={`border-b border-ph-border flex items-center transition-all ${
-            collapsed
+          className={`border-b border-ph-border flex items-center transition-all ${collapsed
               ? "p-3 flex-col gap-2 justify-center"
               : "p-4 justify-between gap-2"
-          }`}
+            }`}
         >
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 rounded-lg bg-ph-primary flex items-center justify-center text-white font-bold shadow-sm shrink-0">
@@ -157,15 +155,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 key={item.href}
                 href={item.href}
                 title={collapsed ? item.label : undefined}
-                className={`flex items-center rounded-lg text-sm font-medium transition-colors ${
-                  collapsed
+                className={`flex items-center rounded-lg text-sm font-medium transition-colors ${collapsed
                     ? "justify-center p-3"
                     : "gap-3 px-3 py-2.5"
-                } ${
-                  active
+                  } ${active
                     ? "bg-ph-primary text-white shadow-sm font-semibold"
                     : "text-ph-text-secondary hover:bg-ph-grid-hover hover:text-ph-text-primary"
-                }`}
+                  }`}
               >
                 <Icon className="w-5 h-5 shrink-0" />
                 {!collapsed && (
@@ -178,9 +174,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
         {/* Rodapé da Sidebar */}
         <div
-          className={`border-t border-ph-border space-y-2 transition-all ${
-            collapsed ? "p-2 flex flex-col items-center" : "p-3"
-          }`}
+          className={`border-t border-ph-border space-y-2 transition-all ${collapsed ? "p-2 flex flex-col items-center" : "p-3"
+            }`}
         >
           {/* Alternância de Tema */}
           {collapsed ? (
